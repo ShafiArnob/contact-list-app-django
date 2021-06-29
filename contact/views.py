@@ -2,7 +2,8 @@ from django.shortcuts import redirect, render
 from . models import Contact
 # Create your views here.
 def index(request):
-  return render(request,'index.html')
+  contacts = Contact.objects.all()
+  return render(request,'index.html',{'contacts':contacts})
 
 def add_contact(request):
   if request.method == 'POST':
