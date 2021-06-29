@@ -19,8 +19,8 @@
       <form action="" class="search-bar">
         <input type="search-name" class="contact-search" name="search-area" placeholder="Search">
       </form>
-
-      <a href="#">
+      {% comment %} Add Contact {% endcomment %}
+      <a href="{% url 'add-contact' %}">
         <i class="fas fa-plus-circle add"></i>
       </a>
     </header>
