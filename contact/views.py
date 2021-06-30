@@ -40,4 +40,12 @@ def edit_contact(request,pk):
 
     return redirect('/profile/' + str(contact.id))
 
-  return render(request, 'edit.html',{'contact':contact}) 
+  return render(request, 'edit.html',{'contact':contact})
+# Delete Contact
+def delete_contact(request,pk):
+  contact = Contact.objects.get(id=pk)
+
+  if request.method == 'POST':
+    contact.delete()
+    return redirect('/')
+  return render(request,'delete.html',{'contact':contact})
