@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,67 +7,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script src="https://kit.fontawesome.com/ff584a4a55.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style-edit.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href={% static 'style-edit.css' %}>
   <title>Profile Edit</title>
 </head>
 <body>
   <div class="container">
     <header class="hero">
-      <a href="index.html">
+      <a href="{% url 'profile' contact.id %}">
         <i class="fas fa-arrow-circle-left back-btn"></i>
       </a>
       <div class="hero-info">
-        <h1 class="name">John Doe</h1>
-        <p class="relationship">Friend</p>
+        <h1 class="name">{{contact.full_name | title}}</h1>
+        <p class="relationship">{{contact.relationship | title}}</p>
       </div>
     </header>
     
-    <section class="contact-info">
-      <!-- Name edit-->
-      <div class="info-line">
-        <i class="fas fa-phone icon-gradient"></i>
-        <input type="text" class="type" name="fullname" placeholder="Full Name">
-      </div>
-      <!-- Relationship Edit -->
-      <div class="info-line">
-        <i class="fas fa-sms icon-gradient"></i>
-        <input type="text" class="type" name="relationship" placeholder="Relationship">
-      </div>
-      <!-- Phone edit-->
-      <div class="info-line">
-        <i class="fas fa-phone icon-gradient"></i>
-        <input type="text" class="type" name="phone" placeholder="Phone Number">
-      </div>
-      <!-- Email edit-->
-      <div class="info-line">
-        <i class="far fa-envelope icon-gradient"></i>
-        <input type="text" class="type" name="email" placeholder="Email">
-      </div>
-      <!-- Address edit-->
-      <div class="info-line">
-        <i id="location" class="fas fa-map-marker-alt icon-gradient"></i>
-        <input type="text" class="type" name="address" placeholder="Address">
-      </div>
-    </section>
-    <section class="button-container">
-      <a href="#">
-        <div class="update-contact">
-          <i class="fas fa-check-circle icon-gradient"></i>
-          <button class="button">Save Contact</button>
+    <form action="" method="POST">
+    {% csrf_token %}
+      <section class="contact-info">
+        <!-- Name edit-->
+        <div class="info-line">
+          <i class="fas fa-phone icon-gradient"></i>
+          <input type="text" class="type" name="fullname" placeholder="Full Name" 
+                  value="{{contact.full_name}}">
         </div>
-      </a>
-    </section>
-    <section class="button-container">
-      <a href="#">
-        <div class="update-contact">
-          <i class="fas fa-trash-alt icon-gradient"></i>
-          <button class="button">Delete Contact</button>
+        <!-- Relationship Edit -->
+        <div class="info-line">
+          <i class="fas fa-sms icon-gradient"></i>
+          <input type="text" class="type" name="relationship" placeholder="Relationship" 
+                  value="{{contact.relationship}}">
         </div>
-      </a>
-    </section>
+        <!-- Phone edit-->
+        <div class="info-line">
+          <i class="fas fa-phone icon-gradient"></i>
+          <input type="text" class="type" name="phone" placeholder="Phone Number" 
+                  value="{{contact.phone_number}}">
+        </div>
+        <!-- Email edit-->
+        <div class="info-line">
+          <i class="far fa-envelope icon-gradient"></i>
+          <input type="text" class="type" name="email" placeholder="Email" 
+                  value="{{contact.email}}">
+        </div>
+        <!-- Address edit-->
+        <div class="info-line">
+          <i id="location" class="fas fa-map-marker-alt icon-gradient"></i>
+          <input type="text" class="type" name="address" placeholder="Address" 
+                  value="{{contact.address}}">
+        </div>
+      </section>
+      <section class="button-container">
+        <a href="#">
+          <div class="update-contact">
+            <i class="fas fa-check-circle icon-gradient"></i>
+            <button class="button">Save Contact</button>
+          </div>
+        </a>
+      </section>
+      <section class="button-container">
+        <a href="#">
+          <div class="update-contact">
+            <i class="fas fa-trash-alt icon-gradient"></i>
+            <button class="button">Delete Contact</button>
+          </div>
+        </a>
+      </section>
+    </form>
   </div>
 </body>
 </html>

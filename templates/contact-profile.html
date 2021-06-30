@@ -48,7 +48,7 @@
         <p class="address">{{contact.address | title}}</p>
       </div>
     </section>
-    <a href="#">
+    <a href="{% url 'edit-contact' contact.id %}">
       <section class="edit-contact">
         <div class="edit-contact">
           <i class="fas fa-cog  icon-gradient"></i>
