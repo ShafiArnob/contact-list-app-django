@@ -16,8 +16,8 @@
 <body>
   <div class="container">
     <header class='header'>
-      <form action="" class="search-bar">
-        <input type="search-name" class="contact-search" name="search-area" placeholder="Search">
+      <form action="/" method='GET' class="search-bar">
+        <input type="search-name" class="contact-search" name="search-area" placeholder="Search" value='{{search_input}}'>
       </form>
       {% comment %} Add Contact {% endcomment %}
       <a href="{% url 'add-contact' %}">
@@ -38,6 +38,8 @@
           </div>
         </a>
         <hr>
+      {% empty %}
+      <h3 style="color:#fff; padding: 20px;">No Contacts Found....</h3>
       {% endfor %}
       </ul>
     </section>
